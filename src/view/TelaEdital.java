@@ -14,8 +14,6 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
 
-
-
 public class TelaEdital extends JFrame {
     private JPanel painel1;
     private JPanel painel2;
@@ -133,7 +131,41 @@ public class TelaEdital extends JFrame {
         dataFechamento = "05/05/2023";
         String edital3 = nomeFantasia + " - " + dataFechamento;
         modelEditais.addElement(edital3);
-
+        
+        nomeFantasia = "Caixa Econômica Federal";
+        dataFechamento = "05/05/2023";
+        String edital4 = nomeFantasia + " - " + dataFechamento;
+        modelEditais.addElement(edital4);
+        
+        nomeFantasia = "Polícia Rodoviária Federal";
+        dataFechamento = "07/12/2023";
+        String edital5 = nomeFantasia + " - " + dataFechamento;
+        modelEditais.addElement(edital5);
+        
+        nomeFantasia = "Departamento Estadual de Trânsito";
+        dataFechamento = "07/12/2023";
+        String edital6 = nomeFantasia + " - " + dataFechamento;
+        modelEditais.addElement(edital6);
+        
+        nomeFantasia = "Receita Federal";
+        dataFechamento = "18/11/2023";
+        String edital7 = nomeFantasia + " - " + dataFechamento;
+        modelEditais.addElement(edital7);
+        
+        nomeFantasia = "Polícia Federal";
+        dataFechamento = "07/12/2023";
+        String edital8 = nomeFantasia + " - " + dataFechamento;
+        modelEditais.addElement(edital8);
+        
+        nomeFantasia = "Câmaras dos Deputados";
+        dataFechamento = "22/04/2023";
+        String edital9 = nomeFantasia + " - " + dataFechamento;
+        modelEditais.addElement(edital9);
+        
+        nomeFantasia = "Tribunal de Contas da União";
+        dataFechamento = "23/11/2023";
+        String edital10 = nomeFantasia + " - " + dataFechamento;
+        modelEditais.addElement(edital10);
 
         // Inicialização dos componentes do painel 2
         modelPrioridade = new DefaultListModel<>();

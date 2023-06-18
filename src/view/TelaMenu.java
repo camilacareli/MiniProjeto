@@ -1,39 +1,76 @@
 package view;
 
-import java.awt.event.*;
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-// Tela inicial
-public class TelaMenu implements ActionListener {
-    private static JFrame f;
-    private static JButton b1;
-    private static JButton b2;
 
-    // Construtor da classe
+public class TelaMenu extends JFrame {
+    private JComboBox<String> filtroComboBox;
+    private JButton filtrarButton;
+
     public TelaMenu() {
-        f = new JFrame("Estudo para Concurso!");
-        b1 = new JButton("EDITAIS");
-        b2 = new JButton("QUESTÕES");
-        f.setSize(300, 100);
-        b1.setBounds(80, 10, 120, 30);
-        b2.setBounds(80, 50, 120, 30);
-        f.setLayout(null);
-        f.add(b1);
-        f.add(b2);
-        f.setVisible(true);
-        
-        // Adiciona o ActionListener ao botão "EDITAIS"
-        b1.addActionListener(this);
+        // Configurações básicas da tela
+        setTitle("Filtro de Questões");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(300, 150);
+        setLocationRelativeTo(null);
+
+        // Painel principal
+        JPanel panel = new JPanel();
+        panel.setLayout(new FlowLayout());
+
+        // ComboBox de filtro
+        filtroComboBox = new JComboBox<>();
+        filtroComboBox.addItem("Todos");
+        filtroComboBox.addItem("EDITAIS");
+        filtroComboBox.addItem("QUESTÕES DE MULTIPLA ESCOLHA");
+        filtroComboBox.addItem("QUESTÕES DISSERTATIVAS");
+        panel.add(filtroComboBox);
+
+        // Botão Filtrar
+        filtrarButton = new JButton("Filtrar");
+        filtrarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                filtrarQuestoes();
+            }
+        });
+        panel.add(filtrarButton);
+
+        // Adiciona o painel à tela
+        add(panel);
+
+        // Exibe a tela
+        setVisible(true);
+    }
+
+    private void filtrarQuestoes() {
+        String filtro = (String) filtroComboBox.getSelectedItem();
+
+        // Cria e exibe a tela correspondente ao filtro selecionado
+        if (filtro.equals("EDITAIS")) {
+            TelaEdital telaEdital = new TelaEdital();
+            telaEdital.setVisible(true);
+        } else if (filtro.equals("QUESTÕES DE MULTIPLA ESCOLHA")) {
+            TelaMultiplaEscolha telaMultiplaEscolha = new TelaMultiplaEscolha();
+            telaMultiplaEscolha.setVisible(true);
+        } else if (filtro.equals("QUESTÕES DISSERTATIVAS")) {
+            TelaDissertativa telaDissertativa = new TelaDissertativa();
+            telaDissertativa.setVisible(true);
+        }
     }
 
     public static void main(String[] args) {
-        TelaMenu menu = new TelaMenu();
-    }
-
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == b1) {
-            // Cria uma instância da classe TelaEdital
-            TelaEdital telaEdital = new TelaEdital();
-        }
+        // Cria a tela principal
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                new TelaMenu();
+            }
+        });
     }
 }
+
+
+
