@@ -1,12 +1,17 @@
-# MiniProjeto
+# MiniProjeto | Estudo para Concurso | JAVA
 Colaboradores:
-221007582 | Camila Costa de S. Careli
-221008688 | Pedro Paulo Santos Almeida
+<br>
+-> 221007582 | Camila Costa de S. Careli
+<br>
+-> 221008688 | Pedro Paulo Santos Almeida
 
-Mini Cenário: Estudo pra concurso Um aluno deseja estudar para concurso. Para isso, é necessário adicionar o seu nome, um email e uma senha, ou seja, um login. Logo, ele poderá buscar por 1 ou mais editais específicos. Após isso, ele pode buscar por questões de provas anteriores de uma determinada matéria. Um administrador banca examinadora, loga também colocando seu nome, email e senha para acessar com o seu idAdmin. Após logar, o administrador da banca adicionará a banca no qual ele está representando, inserindo o nome fantasia de tal banca. Terminando a etapa de identificação, a banca poderá criar e deletar editais de sua banca e inserir provas anteriores, a fim de que os alunos tenham acesso.
 
-Com o intuito de promover uma facilidade pros estudos para concursos, é desejado aplicar:
-CRUD de edital: nome do concurso, regras da prova, taxa de incrição, data do concurso, data aberta;
-CRUD de questões: tem questões de multiplaescolha e questões do tipo texto;
-Listagem de questões; Busca por questões de uma determinada matéria e
-Listagem de editais com a inscrição aberta na data atual.
+Minicenário | Estudo para Concurso | JAVA
+
+Um aluno deseja começar os estudos para concursos mas não sabe um lugar que tenha informações a fim de melhorar a sua organização aos estudos e ao próprio aprendizado. Para isso, por meio da plataforma “Planejando Meu Futuro” o usuário-aluno poderá escolher entre editais, questões de múltipla escolha e questões dissertativas. 
+Na parte de editais é possível criar, deletar da sua lista, ler informações, atualizar a lista de editais e buscar editais com inscrições abertas na data atual.
+Na parte de questões, seja dissertativa seja múltipla escolha, é possível que o usuário-aluno crie uma questão e também delete. Além disso, é possível atualizar a lista de questões e ler as questões. Ademais, é possível buscar por uma determinada matéria na listagem de todas as questões cadastradas.
+Em suma, o intuito é promover aos usuários-alunos uma facilidade aos estudos para concursos e planejar seu futuro de uma forma leve e agradável.
+
+
+
