@@ -5,42 +5,50 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import javax.swing.border.EmptyBorder;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.text.SimpleDateFormat;
-import java.text.ParseException;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import model.Dados;
+import model.Edital;
+
 
 public class TelaEdital extends JFrame {
-    private JPanel painel1;
+	private static final long serialVersionUID = 1L;
+	private JPanel painel1;
     private JPanel painel2;
     private JPanel painel3;
     private JPanel painel4;
     private JList<String> listaEditais;
     private DefaultListModel<String> modelEditais;
-    private JList<String> listaPrioridade;
-    private DefaultListModel<String> modelPrioridade;
     private JTextField txtNomeConcurso;
     private JTextField txtRegrasProva;
     private JTextField txtTaxaInscricao;
     private JTextField txtDataConcurso;
     private JTextField txtDataFechamento;
-    private JButton btnExcluirEdital;
-    private JButton btnAdicionarPrioridade;
-    private JButton btnRemoverPrioridade;
-    private JButton btnAdicionarEdital;
     private JTextField txtDataAtual;
+    private JButton btnExcluirEdital;
+    private JButton btnAdicionarLeitura;
+    private JButton btnUpdate;
+    private JButton btnAdicionarEdital;
     private JButton btnBuscarEditais;
+    private String localLeitura;
+    private JTextArea leitura;
+	@SuppressWarnings("unused")
+	private Dados d;
 
-    public TelaEdital() {
+    public TelaEdital(Dados d) {
+    	this.d = d;
+    	
         // Configurações básicas do JFrame
-        setTitle("Estudo para Concurso | EDITAIS");
+        setTitle("Planejando Meu Futuro | EDITAIS");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new GridLayout(2, 2));
-
+        
+       
+	
+        
         // Inicialização dos painéis
         painel1 = new JPanel(new BorderLayout());
         painel2 = new JPanel(new BorderLayout());
@@ -49,7 +57,7 @@ public class TelaEdital extends JFrame {
         
      // Títulos dos painéis
         JLabel tituloPainel1 = new JLabel("Editais Disponíveis");
-        JLabel tituloPainel2 = new JLabel("Prioridade");
+        JLabel tituloPainel2 = new JLabel("Campo leitura");
         JLabel tituloPainel3 = new JLabel("Adicionar Edital");
         JLabel tituloPainel4 = new JLabel("Buscar Editais");
 
@@ -104,81 +112,39 @@ public class TelaEdital extends JFrame {
         
      // Inicialização dos componentes do painel 1
         modelEditais = new DefaultListModel<>();
+        for (Edital edital : d.getEditais()) {
+        	 modelEditais.addElement(edital.getNomeConcurso() + " - " + edital.getDataFechamento());
+        }
+        
 
         listaEditais = new JList<>(modelEditais);
         JScrollPane scrollPane1 = new JScrollPane(listaEditais);
         painel1.add(scrollPane1, BorderLayout.CENTER);
 
         btnExcluirEdital = new JButton("Excluir Edital");
-        btnAdicionarPrioridade = new JButton("Adicionar Prioridade");
+        btnAdicionarLeitura = new JButton("Ler Edital");
         JPanel panelBotoes1 = new JPanel();
         panelBotoes1.add(btnExcluirEdital);
-        panelBotoes1.add(btnAdicionarPrioridade);
+        panelBotoes1.add(btnAdicionarLeitura);
         painel1.add(panelBotoes1, BorderLayout.SOUTH);
 
         // Lógica para adicionar os editais no painel 1 com o padrão nomeFantasia + dataFechamento
-        String nomeFantasia = "Banco do Brasil";
-        String dataFechamento = "30/06/2023";
-        String edital1 = nomeFantasia + " - " + dataFechamento;
-        modelEditais.addElement(edital1);
+       
 
-        nomeFantasia = "Ministério da Educação";
-        dataFechamento = "15/07/2023";
-        String edital2 = nomeFantasia + " - " + dataFechamento;
-        modelEditais.addElement(edital2);
+        // Inicialização dos componentes do painel 2. 
+        
+       
+        leitura =  new JTextArea(localLeitura);
+        leitura.setBounds(0, 3000, 250, 300);
+        painel2.add(leitura);      
+        
 
-        nomeFantasia = "Departamento Estadual de Trânsito";
-        dataFechamento = "05/05/2023";
-        String edital3 = nomeFantasia + " - " + dataFechamento;
-        modelEditais.addElement(edital3);
-        
-        nomeFantasia = "Caixa Econômica Federal";
-        dataFechamento = "05/05/2023";
-        String edital4 = nomeFantasia + " - " + dataFechamento;
-        modelEditais.addElement(edital4);
-        
-        nomeFantasia = "Polícia Rodoviária Federal";
-        dataFechamento = "07/12/2023";
-        String edital5 = nomeFantasia + " - " + dataFechamento;
-        modelEditais.addElement(edital5);
-        
-        nomeFantasia = "Departamento Estadual de Trânsito";
-        dataFechamento = "07/12/2023";
-        String edital6 = nomeFantasia + " - " + dataFechamento;
-        modelEditais.addElement(edital6);
-        
-        nomeFantasia = "Receita Federal";
-        dataFechamento = "18/11/2023";
-        String edital7 = nomeFantasia + " - " + dataFechamento;
-        modelEditais.addElement(edital7);
-        
-        nomeFantasia = "Polícia Federal";
-        dataFechamento = "07/12/2023";
-        String edital8 = nomeFantasia + " - " + dataFechamento;
-        modelEditais.addElement(edital8);
-        
-        nomeFantasia = "Câmaras dos Deputados";
-        dataFechamento = "22/04/2023";
-        String edital9 = nomeFantasia + " - " + dataFechamento;
-        modelEditais.addElement(edital9);
-        
-        nomeFantasia = "Tribunal de Contas da União";
-        dataFechamento = "23/11/2023";
-        String edital10 = nomeFantasia + " - " + dataFechamento;
-        modelEditais.addElement(edital10);
-
-        // Inicialização dos componentes do painel 2
-        modelPrioridade = new DefaultListModel<>();
-        listaPrioridade = new JList<>(modelPrioridade);
-        JScrollPane scrollPane2 = new JScrollPane(listaPrioridade);
-        painel2.add(scrollPane2, BorderLayout.CENTER);
-
-        btnRemoverPrioridade = new JButton("Remover Prioridade");
+        btnUpdate = new JButton("Atualizar Edital");
         JPanel panelBotoes2 = new JPanel();
-        panelBotoes2.add(btnRemoverPrioridade);
+        panelBotoes2.add(btnUpdate);
         painel2.add(panelBotoes2, BorderLayout.SOUTH);
 
-        // Inicialização dos componentes do painel 3
+        // Inicialização dos componentes do painel 3 (certo)
         JPanel panelCampos = new JPanel(new GridLayout(5, 2));
         panelCampos.add(new JLabel("Nome do Concurso:"));
         txtNomeConcurso = new JTextField();
@@ -196,10 +162,11 @@ public class TelaEdital extends JFrame {
         txtDataFechamento = new JTextField();
         panelCampos.add(txtDataFechamento);
         btnAdicionarEdital = new JButton("Adicionar Edital");
+       
         painel3.add(panelCampos, BorderLayout.CENTER);
         painel3.add(btnAdicionarEdital, BorderLayout.SOUTH);
 
-        // Inicialização dos componentes do painel 4
+        // Inicialização dos componentes do painel 4 (certp)
         JPanel panelDataAtual = new JPanel(new FlowLayout(FlowLayout.LEFT)); // Alteração do layout para FlowLayout
         panelDataAtual.add(new JLabel("Data Atual:"));
         txtDataAtual = new JTextField(15); // Aumentando o tamanho do campo de texto para 15 colunas
@@ -209,43 +176,39 @@ public class TelaEdital extends JFrame {
         painel4.add(panelDataAtual, BorderLayout.CENTER); // Posicionando o painel no centro
         painel4.add(btnBuscarEditais, BorderLayout.SOUTH);
         
+       
+        
         btnBuscarEditais.addActionListener(new ActionListener() {
-            @Override
+			@Override
             public void actionPerformed(ActionEvent e) {
-                // Obter a data atual do computador
-                Date dataAtual = new Date();
+                
+                
 
                 // Obter a data digitada pelo usuário
                 String dataDigitadaStr = txtDataAtual.getText();
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                Date dataDigitada = null;
-                try {
-                    dataDigitada = dateFormat.parse(dataDigitadaStr);
-                } catch (ParseException ex) {
-                    JOptionPane.showMessageDialog(TelaEdital.this, "Data digitada inválida! Use o formato dd/MM/yyyy.", "Aviso", JOptionPane.WARNING_MESSAGE);
-                    return;
-                }
+                
+                
+                
 
                 DefaultListModel<String> modelPainel4 = new DefaultListModel<>();
                 listaEditais.setModel(modelPainel4);
-
-                if (dataDigitada.equals(dataAtual) || dataDigitada.after(dataAtual)) {
-                    for (int i = 0; i < modelEditais.size(); i++) {
-                        String edital = modelEditais.getElementAt(i);
-                        String dataEdital = edital.split(" - ")[1];
-
-                        if (dataEdital.equals(dataDigitadaStr)) {
-                            modelPainel4.addElement(edital);
-                        }
-                    }
+                
+                //certo
+                if (d.pesquisarPorData(dataDigitadaStr) == null) {
+                	JOptionPane.showMessageDialog(TelaEdital.this, "Data atual inválida! A data atual é anterior à data digitada.", "Aviso"
+                			, JOptionPane.INFORMATION_MESSAGE);
+                
                 } else {
-                    JOptionPane.showMessageDialog(TelaEdital.this, "Data atual inválida! A data atual é anterior à data digitada.", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-                }
+                modelPainel4.addElement(d.pesquisarPorData(dataDigitadaStr).getNomeConcurso());
+                }  
+                
+                
             }
         });
 
 
 
+        
 
 
 
@@ -256,86 +219,189 @@ public class TelaEdital extends JFrame {
         add(painel4);
 
         // Configurando os listeners dos botões
-        btnExcluirEdital.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Lógica para excluir o edital selecionado na lista
-                int selectedIndex = listaEditais.getSelectedIndex();
-                if (selectedIndex != -1) {
-                    modelEditais.remove(selectedIndex);
-                }
-            }
-        });
+        
+        
 
-        btnAdicionarPrioridade.addActionListener(new ActionListener() {
+        btnAdicionarLeitura.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+            	
                 // Lógica para adicionar o edital selecionado na lista de prioridade
                 String selectedEdital = listaEditais.getSelectedValue();
                 if (selectedEdital != null) {
-                    modelPrioridade.addElement(selectedEdital);
+                	leitura.setText(d.leituraEdital(selectedEdital).toString());
                 }
             }
         });
 
-        btnRemoverPrioridade.addActionListener(new ActionListener() {
+        btnUpdate.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Lógica para remover o edital selecionado da lista de prioridade
-                int selectedIndex = listaPrioridade.getSelectedIndex();
-                if (selectedIndex != -1) {
-                    modelPrioridade.remove(selectedIndex);
-                }
-            }
-        });
+            	listaEditais.addListSelectionListener(new ListSelectionListener() {
+            	    public void valueChanged(ListSelectionEvent e) {
+            	        if (!e.getValueIsAdjusting()) {
+            	            // Obtém o índice do edital selecionado
+            	            int selectedIndex = listaEditais.getSelectedIndex();
 
+            	            // Verifica se um edital foi selecionado
+            	            if (selectedIndex != -1) {
+            	                // Obtém o edital selecionado a partir do objeto Dados
+            	                Edital editalSelecionado = d.getEditais().get(selectedIndex);
+            	                
+            	                
+            	                // Preenche os campos de texto com os dados do edital
+            	                txtNomeConcurso.setText(editalSelecionado.getNomeConcurso());
+            	                txtRegrasProva.setText(editalSelecionado.getRegrasProva());
+            	                txtTaxaInscricao.setText(editalSelecionado.getTaxaInscricao());
+            	                txtDataConcurso.setText(editalSelecionado.getDataConcurso());
+            	                txtDataFechamento.setText(editalSelecionado.getDataFechamento());
+            	                
+            	                
+            	               
+            	                
+
+            	                // Exclui o edital antigo da lista
+            	                
+            	            }
+            	        }
+            	    }
+            	});	 
+            
+        
+           }
+        });
+        
+        
+        
+        
+        
+       //Certoo
         btnAdicionarEdital.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Lógica para adicionar um novo edital na lista do painel 1
                 String nomeConcurso = txtNomeConcurso.getText();
+                String regrasProva = txtRegrasProva.getText();
+                String taxaInscricao = txtTaxaInscricao.getText();
                 String dataConcurso = txtDataConcurso.getText();
-                String novoEdital = nomeConcurso + " - " + dataConcurso;
-                modelEditais.addElement(novoEdital);
-
+                String dataFechamento = txtDataFechamento.getText();
+                
+                 d.criarEdital(nomeConcurso, regrasProva, taxaInscricao, dataConcurso, dataFechamento);
+                d.getEditais().add(null);
+                
+                
+                if (d.getEditais().contains(null)) {
+                    JOptionPane.showMessageDialog(null, "Edital Salvo!");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Erro ao Salvar!");                
+                }
+                
+                
+                DefaultListModel<String> model = (DefaultListModel<String>) listaEditais.getModel();
+                
+                model.addElement(nomeConcurso + " - " + dataConcurso);
+                
+                listaEditais.setModel(model);
+                
                 // Limpar os campos de entrada após adicionar o edital
                 txtNomeConcurso.setText("");
+                txtRegrasProva.setText("");
+                txtTaxaInscricao.setText("");
                 txtDataConcurso.setText("");
+                txtDataFechamento.setText("");
+                
+                ;
             }
         });
+        
+        
+        
+        
+         
+         btnExcluirEdital.addActionListener(new ActionListener() {
+        	    @Override
+        	    public void actionPerformed(ActionEvent e) {
+        	    	 int selectedIndex = listaEditais.getSelectedIndex();
+        	         if (selectedIndex != -1) {
+        	             boolean res = d.excluirEdital(selectedIndex);
+        	             if (res) {
+        	                 JOptionPane.showMessageDialog(null, "Edital removido com sucesso!");
+                            listaEditais.updateUI();
+        	                 // Atualizar a lista de editais após a remoção
+        	                 DefaultListModel<String> model = (DefaultListModel<String>) listaEditais.getModel();
+        	                 model.remove(selectedIndex);
+        	                 listaEditais.setModel(model); // Atualizar o modelo da lista
+        	             } else {
+        	                 JOptionPane.showMessageDialog(null, "Erro ao remover o edital!");
+        	             }
+        	         } else {
+        	             JOptionPane.showMessageDialog(null, "Selecione um edital para remover!");
+        	         }
+        	         
+        	    }
+        	 });
+        
+        
 
-        btnBuscarEditais.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Lógica para buscar os editais com a data dentro do prazo no painel 1
-                String dataAtual = txtDataAtual.getText();
-                List<String> editaisNoPrazo = new ArrayList<>();
-                for (int i = 0; i < modelEditais.size(); i++) {
-                    String edital = modelEditais.getElementAt(i);
-                    String dataEdital = edital.split(" - ")[1];
-                    if (dataEdital.compareTo(dataAtual) >= 0) {
-                        editaisNoPrazo.add(edital);
-                    }
-                }
-                String[] editaisArray = new String[editaisNoPrazo.size()];
-                editaisNoPrazo.toArray(editaisArray);
-                listaEditais.setListData(editaisArray);
-            }
-        });
-
+        
+        
+        
         // Configurações finais do JFrame
         pack();
         setLocationRelativeTo(null); // Centraliza a janela na tela
         setVisible(true);
+       
+       
+       
+        
+        
     }
+    
+    
+	
 
-    public static void main(String[] args) {
+
+	 
+
+
+
+
+
+	public  ArrayList<String[]> getEdital() {
+        ArrayList<String[]> Editais = new ArrayList<>();
+        ArrayList<Edital> E = Dados.getTodosEditais();
+        
+        for (int i=0; i<E.size();i++) {
+        
+        }
+       
+        return Editais;
+        
+
+        // Aqui você deve implementar a lógica para obter o edital selecionado
+        // por exemplo, através de um componente de lista ou tabela
+
+        // Suponha que você tenha obtido o edital selecionado em uma variável chamada "editalSelecionado"
+       
+
+    }
+     
+	public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new TelaEdital();
+           
+          
+			public void run() {
+				Dados dados = new Dados();
+                new TelaEdital(dados).setVisible(true);
             }
         });
-    }}
+        
+        
+    }
+
+	
+	
+
+}
 
 

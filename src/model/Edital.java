@@ -1,26 +1,28 @@
 package model;
 
-import java.util.ArrayList;
+
+
+
 
 public class Edital {
 	private String nomeConcurso;
 	private String regrasProva;
-	private Double taxaInscricao;
-	private String dataConcurso;
+	private String taxaInscricao;
 	private String dataFechamento;
-	private ArrayList<Questao> prova;
+	private String dataConcurso;
 	
 	
+
+
 	//construtores
-	public Edital(String nomeConcurso, String regrasProva, Double taxaInscricao, String dataConcurso,
-			String dataFechamento, ArrayList<Questao> prova) {
+	public Edital(String nomeConcurso, String regrasProva, String taxaInscricao,
+			String dataFechamento, String dataConcurso) {
 		super();
 		this.nomeConcurso = nomeConcurso;
 		this.regrasProva = regrasProva;
 		this.taxaInscricao = taxaInscricao;
-		this.dataConcurso = dataConcurso;
 		this.dataFechamento = dataFechamento;
-		this.prova = prova;
+		this.dataConcurso = dataConcurso;
 	}
 
 
@@ -44,23 +46,13 @@ public class Edital {
 	}
 
 
-	public Double getTaxaInscricao() {
+	public String getTaxaInscricao() {
 		return taxaInscricao;
 	}
 
 
-	public void setTaxaInscricao(Double taxaInscricao) {
+	public void setTaxaInscricao(String taxaInscricao) {
 		this.taxaInscricao = taxaInscricao;
-	}
-
-
-	public String getDataConcurso() {
-		return dataConcurso;
-	}
-
-
-	public void setDataConcurso(String dataConcurso) {
-		this.dataConcurso = dataConcurso;
 	}
 
 
@@ -73,23 +65,24 @@ public class Edital {
 		this.dataFechamento = dataFechamento;
 	}
 
-
-	public ArrayList<Questao> getProva() {
-		return prova;
+public String getDataConcurso() {
+		return dataConcurso;
 	}
 
 
-	public void setProva(ArrayList<Questao> prova) {
-		this.prova = prova;
+	public void setDataConcurso(String dataConcurso) {
+		this.dataConcurso = dataConcurso;
 	}
+
+	
+	
 
 
 	@Override
 	public String toString() {
-		return "Nome Concurso: " + nomeConcurso + ", RegrasProva: " + regrasProva + ", Taxa Inscricao: "
-				+ taxaInscricao + ", Data do Concurso: " 
-				+ dataConcurso + ", Data do Fechamento das inscricoes: " + dataFechamento + ", Prova: "
-				+ prova;
+		return "Nome Concurso: " + nomeConcurso + "\nRegrasProva: " + regrasProva + "\nTaxa Inscricao: "
+				+ taxaInscricao +  "\nData do Fechamento das inscricoes: " + dataFechamento 
+				+ "\nData do Concurso: " + dataConcurso ;
 	}
 
 
