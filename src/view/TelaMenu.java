@@ -6,44 +6,52 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import model.Dados;
 
-
+/**
+ * Classe principal a fim de que as outras telas estejam 
+ * juntas para serem selecionadas para qualquer tela, 
+ * seja TelaDissertativa, TelaMultiplaEscolha e TelaEdital.
+ * 
+ * @author Camila
+ * @author Pedro
+ * @since 2023
+ * @version 1.1
+ */
 public class TelaMenu extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JComboBox<String> filtroComboBox;
     private JButton filtrarButton;
     private Dados d;
 
+    /**
+     * Contrói um objeto TelaMenu 
+     * @param d Banco de dados
+     */
     public TelaMenu(Dados d) {
         this.d = d;
 
-        // Configurações básicas da tela
+        /**
+         * Configurações básicas da tela como 
+         * tamanho dos Painéis e estilização dos títulos.
+         */
         setTitle("Planejando Meu Futuro | PRINCIPAL");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(300, 150);
         setLocationRelativeTo(null);
-
-        // Painel principal com layout BorderLayout
         JPanel panel = new JPanel(new BorderLayout());
 
-        // Cria o painel do título com fundo preto
+        /*
+         *PAINEL 1
+         */
+        //Título com fundo preto e texto branco
         JPanel tituloPanel = new JPanel();
         tituloPanel.setBackground(Color.BLACK);
-
-        // Cria o rótulo do título com texto branco
         JLabel tituloLabel = new JLabel("ESTUDO PARA CONCURSO");
         tituloLabel.setForeground(Color.WHITE);
-
-        // Adiciona o rótulo ao painel do título
         tituloPanel.add(tituloLabel);
-
-        // Adiciona o painel do título ao painel principal no norte (parte superior)
         panel.add(tituloPanel, BorderLayout.NORTH);
-
-        // Cria o painel do filtro com layout FlowLayout
         JPanel filtroPanel = new JPanel();
-        filtroPanel.setLayout(new FlowLayout());
+        filtroPanel.setLayout(new FlowLayout());//FlowLayout:quebra linha quando necessário
 
-        // ComboBox de filtro
         filtroComboBox = new JComboBox<>();
         filtroComboBox.addItem("ESCOLHA O QUE DESEJA ESTUDAR:");
         filtroComboBox.addItem("EDITAIS");
@@ -51,7 +59,7 @@ public class TelaMenu extends JFrame {
         filtroComboBox.addItem("QUESTÕES DISSERTATIVAS");
         filtroPanel.add(filtroComboBox);
 
-        // Botão Filtrar
+        //Cria o botão para ir a tela escolhida 
         filtrarButton = new JButton("Vamos estudar!");
         filtrarButton.addActionListener(new ActionListener() {
             @Override
@@ -60,15 +68,9 @@ public class TelaMenu extends JFrame {
             }
         });
         filtroPanel.add(filtrarButton);
-
-        // Adiciona o painel do filtro ao painel principal no centro
-        panel.add(filtroPanel, BorderLayout.CENTER);
-
-        // Adiciona o painel à tela
-        add(panel);
-
-        // Exibe a tela
-        setVisible(true);
+        panel.add(filtroPanel, BorderLayout.CENTER);//Centraliza o filtro
+        add(panel);//Adiciona o painel 1 à tela
+        setVisible(true);// Exibe a tela
     }
 
 
@@ -87,11 +89,13 @@ public class TelaMenu extends JFrame {
 	public void setFiltrarButton(JButton filtrarButton) {
 		this.filtrarButton = filtrarButton;
 	}
-
+	
+	/**
+	 * Cria e exibe a tela correspondente ao filtro selecionado
+	 * @see Dados
+	 */
 	private void filtrarQuestoes() {
         String filtro = (String) filtroComboBox.getSelectedItem();
-
-        // Cria e exibe a tela correspondente ao filtro selecionado
         if (filtro.equals("EDITAIS")) {
         	Dados dados = new Dados();
             TelaEdital telaEdital = new TelaEdital(dados);
@@ -105,7 +109,12 @@ public class TelaMenu extends JFrame {
             telaDissertativa.setVisible(true);
         }
     }
-
+	
+	/**
+	 * Configuração para exibir as informações e permitir as
+	 * interações com os dados com a instância da classe Dados.
+	 * @param args
+	 */
     public static void main(String[] args) {
         // Cria a tela principal
         SwingUtilities.invokeLater(new Runnable() {
@@ -116,6 +125,3 @@ public class TelaMenu extends JFrame {
         });
     }
 }
-
-
-

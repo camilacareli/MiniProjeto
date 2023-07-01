@@ -13,7 +13,16 @@ import javax.swing.SwingUtilities;
 import model.Dados;
 import model.Edital;
 
-
+/**
+ * Essa classe cria a interface completa para que o CRUD de 
+ * editais sejam visualizadas.
+ * 
+ * @author Camila
+ * @author Pedro
+ * @since 2023
+ * @version 1.1
+ *
+ */
 public class TelaEdital extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel painel1;
@@ -38,24 +47,23 @@ public class TelaEdital extends JFrame {
 	@SuppressWarnings("unused")
 	private Dados d;
 
+	/**
+	 * Contrói objeto TelaEdital
+	 * @param d
+	 */
     public TelaEdital(Dados d) {
     	this.d = d;
     	
-        // Configurações básicas do JFrame
+        //Configurações básicas dos painéis 1, 2, 3 e 4.
         setTitle("Planejando Meu Futuro | EDITAIS");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//Aplicação fecha após clicar no X.
         setLayout(new GridLayout(2, 2));
-        
-       
-	
-        
-        // Inicialização dos painéis
         painel1 = new JPanel(new BorderLayout());
         painel2 = new JPanel(new BorderLayout());
         painel3 = new JPanel(new BorderLayout());
         painel4 = new JPanel(new BorderLayout());
         
-     // Títulos dos painéis
+        // Títulos dos painéis
         JLabel tituloPainel1 = new JLabel("Editais Disponíveis");
         JLabel tituloPainel2 = new JLabel("Campo leitura");
         JLabel tituloPainel3 = new JLabel("Adicionar Edital");
@@ -67,13 +75,11 @@ public class TelaEdital extends JFrame {
         painel3.add(tituloPainel3, BorderLayout.NORTH);
         painel4.add(tituloPainel4, BorderLayout.NORTH);
         
-     // Cores para os fundos dos títulos
+        //Cores para os fundos dos títulos
         Color corTituloPainel1 = Color.BLUE;
         Color corTituloPainel2 = Color.GREEN;
         Color corTituloPainel3 = Color.RED;
         Color corTituloPainel4 = Color.ORANGE;
-
-        // Definindo as cores de fundo dos títulos
         tituloPainel1.setOpaque(true);
         tituloPainel1.setBackground(corTituloPainel1);
         tituloPainel2.setOpaque(true);
@@ -83,14 +89,14 @@ public class TelaEdital extends JFrame {
         tituloPainel4.setOpaque(true);
         tituloPainel4.setBackground(corTituloPainel4);
         
-     // Configurando o alinhamento central dos títulos
+        //Alinhamento central dos títulos
         tituloPainel1.setHorizontalAlignment(SwingConstants.CENTER);
         tituloPainel2.setHorizontalAlignment(SwingConstants.CENTER);
         tituloPainel3.setHorizontalAlignment(SwingConstants.CENTER);
         tituloPainel4.setHorizontalAlignment(SwingConstants.CENTER);
         
-     // Definindo o padding (espaçamento) dos títulos
-        int padding = 7; // Defina o valor de espaçamento desejado
+        //Espaçamento dos títulos
+        int padding = 7;
         tituloPainel1.setBorder(new EmptyBorder(padding, padding, padding, padding));
         tituloPainel2.setBorder(new EmptyBorder(padding, padding, padding, padding));
         tituloPainel3.setBorder(new EmptyBorder(padding, padding, padding, padding));
@@ -99,28 +105,30 @@ public class TelaEdital extends JFrame {
         // Definindo as cores de fundo e de letra dos títulos
         tituloPainel1.setOpaque(true);
         tituloPainel1.setBackground(corTituloPainel1);
-        tituloPainel1.setForeground(Color.WHITE); // Cor da letra branca
+        tituloPainel1.setForeground(Color.WHITE);
         tituloPainel2.setOpaque(true);
         tituloPainel2.setBackground(corTituloPainel2);
-        tituloPainel2.setForeground(Color.WHITE); // Cor da letra branca
+        tituloPainel2.setForeground(Color.WHITE);
         tituloPainel3.setOpaque(true);
         tituloPainel3.setBackground(corTituloPainel3);
-        tituloPainel3.setForeground(Color.WHITE); // Cor da letra branca
+        tituloPainel3.setForeground(Color.WHITE);
         tituloPainel4.setOpaque(true);
         tituloPainel4.setBackground(corTituloPainel4);
-        tituloPainel4.setForeground(Color.WHITE); // Cor da letra branca
+        tituloPainel4.setForeground(Color.WHITE);
         
-     // Inicialização dos componentes do painel 1
+        /*
+         * PAINEL 1
+         */
+        //Formato desejado para aparecer no painel pegando os dados da classe Dados.
         modelEditais = new DefaultListModel<>();
         for (Edital edital : d.getEditais()) {
         	 modelEditais.addElement(edital.getNomeConcurso() + " - " + edital.getDataFechamento());
         }
-        
-
         listaEditais = new JList<>(modelEditais);
         JScrollPane scrollPane1 = new JScrollPane(listaEditais);
         painel1.add(scrollPane1, BorderLayout.CENTER);
-
+        
+        //Cria, adiciona e centraliza os botões "Excluir" e "Ler".
         btnExcluirEdital = new JButton("Excluir Edital");
         btnAdicionarLeitura = new JButton("Ler Edital");
         JPanel panelBotoes1 = new JPanel();
@@ -128,23 +136,23 @@ public class TelaEdital extends JFrame {
         panelBotoes1.add(btnAdicionarLeitura);
         painel1.add(panelBotoes1, BorderLayout.SOUTH);
 
-        // Lógica para adicionar os editais no painel 1 com o padrão nomeFantasia + dataFechamento
-       
-
-        // Inicialização dos componentes do painel 2. 
-        
-       
+        /*
+         * PAINEL 2
+         */
+        //Cria o painel 2, coloca no lugar desejado e adiciona na tela.
         leitura =  new JTextArea(localLeitura);
         leitura.setBounds(0, 3000, 250, 300);
         painel2.add(leitura);      
         
-
         btnUpdate = new JButton("Atualizar Edital");
         JPanel panelBotoes2 = new JPanel();
         panelBotoes2.add(btnUpdate);
         painel2.add(panelBotoes2, BorderLayout.SOUTH);
 
-        // Inicialização dos componentes do painel 3 (certo)
+        /*
+         * PAINEL 3
+         */
+        //Campos para criar edital
         JPanel panelCampos = new JPanel(new GridLayout(5, 2));
         panelCampos.add(new JLabel("Nome do Concurso:"));
         txtNomeConcurso = new JTextField();
@@ -166,34 +174,30 @@ public class TelaEdital extends JFrame {
         painel3.add(panelCampos, BorderLayout.CENTER);
         painel3.add(btnAdicionarEdital, BorderLayout.SOUTH);
 
-        // Inicialização dos componentes do painel 4 (certp)
-        JPanel panelDataAtual = new JPanel(new FlowLayout(FlowLayout.LEFT)); // Alteração do layout para FlowLayout
+        /*
+         * PAINEL 4
+         */
+        JPanel panelDataAtual = new JPanel(new FlowLayout(FlowLayout.LEFT));//Quebra linha quando necessário
         panelDataAtual.add(new JLabel("Data Atual:"));
-        txtDataAtual = new JTextField(15); // Aumentando o tamanho do campo de texto para 15 colunas
+        txtDataAtual = new JTextField(15);//Tamanho do texto
         panelDataAtual.add(txtDataAtual);
 
         btnBuscarEditais = new JButton("Buscar Editais");
-        painel4.add(panelDataAtual, BorderLayout.CENTER); // Posicionando o painel no centro
+        painel4.add(panelDataAtual, BorderLayout.CENTER); //Painel no centro
         painel4.add(btnBuscarEditais, BorderLayout.SOUTH);
-        
-       
-        
         btnBuscarEditais.addActionListener(new ActionListener() {
-			@Override
+			
+        	/**
+        	 * Aqui tem um sobreescrita, ou seja, implementa um 
+        	 * método da interface.
+        	 * @param e
+        	 */
+        	@Override
             public void actionPerformed(ActionEvent e) {
-                
-                
-
-                // Obter a data digitada pelo usuário
                 String dataDigitadaStr = txtDataAtual.getText();
-                
-                
-                
-
                 DefaultListModel<String> modelPainel4 = new DefaultListModel<>();
                 listaEditais.setModel(modelPainel4);
-                
-                //certo
+        
                 if (d.pesquisarPorData(dataDigitadaStr) == null) {
                 	JOptionPane.showMessageDialog(TelaEdital.this, "Data atual inválida! A data atual é anterior à data digitada.", "Aviso"
                 			, JOptionPane.INFORMATION_MESSAGE);
@@ -206,27 +210,20 @@ public class TelaEdital extends JFrame {
             }
         });
 
-
-
-        
-
-
-
-        // Adicionando os painéis ao JFrame
+        //Adiciona os painéis ao JFrame
         add(painel1);
         add(painel2);
         add(painel3);
         add(painel4);
 
-        // Configurando os listeners dos botões
-        
-        
-
+        //Listeners dos botões "Ler" e "Update".
         btnAdicionarLeitura.addActionListener(new ActionListener() {
-            @Override
+            /**
+             * Aqui tem um sobreescrita, ou seja, implementa um 
+        	 * método da interface para ler editais específicos.
+             */
+        	@Override
             public void actionPerformed(ActionEvent e) {
-            	
-                // Lógica para adicionar o edital selecionado na lista de prioridade
                 String selectedEdital = listaEditais.getSelectedValue();
                 if (selectedEdital != null) {
                 	leitura.setText(d.leituraEdital(selectedEdital).toString());
@@ -235,60 +232,56 @@ public class TelaEdital extends JFrame {
         });
 
         btnUpdate.addActionListener(new ActionListener() {
-            @Override
+            
+        	/**
+        	 * Aqui tem um sobreescrita, ou seja, implementa um 
+        	 * método da interface para atualizar a lista do painel 1.
+        	 * @param e
+        	 */
+        	@Override
             public void actionPerformed(ActionEvent e) {
             	listaEditais.addListSelectionListener(new ListSelectionListener() {
             	    public void valueChanged(ListSelectionEvent e) {
             	        if (!e.getValueIsAdjusting()) {
-            	            // Obtém o índice do edital selecionado
+            	            //Obtém o índice do edital selecionado
             	            int selectedIndex = listaEditais.getSelectedIndex();
 
-            	            // Verifica se um edital foi selecionado
+            	            //Verifica se um edital foi selecionado
             	            if (selectedIndex != -1) {
-            	                // Obtém o edital selecionado a partir do objeto Dados
+            	                //Edital selecionado a partir do objeto Dados
             	                Edital editalSelecionado = d.getEditais().get(selectedIndex);
-            	                
-            	                
-            	                // Preenche os campos de texto com os dados do edital
+            	                //Preenche os campos de texto com os dados do edital
             	                txtNomeConcurso.setText(editalSelecionado.getNomeConcurso());
             	                txtRegrasProva.setText(editalSelecionado.getRegrasProva());
             	                txtTaxaInscricao.setText(editalSelecionado.getTaxaInscricao());
             	                txtDataConcurso.setText(editalSelecionado.getDataConcurso());
             	                txtDataFechamento.setText(editalSelecionado.getDataFechamento());
-            	                
-            	                
-            	               
-            	                
-
-            	                // Exclui o edital antigo da lista
-            	                
             	            }
             	        }
             	    }
             	});	 
-            
-        
            }
         });
         
-        
-        
-        
-        
-       //Certoo
+        //Listeners do botão "Adiconar"
         btnAdicionarEdital.addActionListener(new ActionListener() {
-            @Override
+            /**
+             * Aqui tem um sobreescrita, ou seja, implementa um 
+        	 * método da interface para o cadastro de editais.
+        	 * @param e
+             */
+        	@Override
             public void actionPerformed(ActionEvent e) {
-                // Lógica para adicionar um novo edital na lista do painel 1
+                //Adiciona um novo edital no painel 1.
                 String nomeConcurso = txtNomeConcurso.getText();
                 String regrasProva = txtRegrasProva.getText();
                 String taxaInscricao = txtTaxaInscricao.getText();
                 String dataConcurso = txtDataConcurso.getText();
                 String dataFechamento = txtDataFechamento.getText();
                 
-                 d.criarEdital(nomeConcurso, regrasProva, taxaInscricao, dataConcurso, dataFechamento);
+                //Adiciona na classe Dados.
+                d.criarEdital(nomeConcurso, regrasProva, taxaInscricao, dataConcurso, dataFechamento);
                 d.getEditais().add(null);
-                
                 
                 if (d.getEditais().contains(null)) {
                     JOptionPane.showMessageDialog(null, "Edital Salvo!");
@@ -298,28 +291,28 @@ public class TelaEdital extends JFrame {
                 
                 
                 DefaultListModel<String> model = (DefaultListModel<String>) listaEditais.getModel();
-                
-                model.addElement(nomeConcurso + " - " + dataConcurso);
-                
+                model.addElement(nomeConcurso + " - " + dataConcurso);             
                 listaEditais.setModel(model);
                 
-                // Limpar os campos de entrada após adicionar o edital
+                // Limpa os campos de entrada após adicionar o edital
                 txtNomeConcurso.setText("");
                 txtRegrasProva.setText("");
                 txtTaxaInscricao.setText("");
                 txtDataConcurso.setText("");
                 txtDataFechamento.setText("");
-                
                 ;
             }
         });
         
-        
-        
-        
-         
+      //Listeners do botão "Excluir".
          btnExcluirEdital.addActionListener(new ActionListener() {
-        	    @Override
+        	   
+        	 	/**
+        	 	 * Aqui tem um sobreescrita, ou seja, implementa um 
+        	 	 * método da interface para excluir algum edital da lista.
+        	 	 * @param e
+        	 	 */
+        	 	@Override
         	    public void actionPerformed(ActionEvent e) {
         	    	 int selectedIndex = listaEditais.getSelectedIndex();
         	         if (selectedIndex != -1) {
@@ -341,67 +334,38 @@ public class TelaEdital extends JFrame {
         	    }
         	 });
         
-        
-
-        
-        
-        
         // Configurações finais do JFrame
         pack();
         setLocationRelativeTo(null); // Centraliza a janela na tela
         setVisible(true);
-       
-       
-       
-        
         
     }
     
-    
-	
-
-
-	 
-
-
-
-
-
+    /**
+     * Aqui é retornado os editais que estão no ArrayList da classe Dados.
+     * @return
+     */
 	public  ArrayList<String[]> getEdital() {
         ArrayList<String[]> Editais = new ArrayList<>();
         ArrayList<Edital> E = Dados.getTodosEditais();
         
-        for (int i=0; i<E.size();i++) {
-        
-        }
-       
         return Editais;
-        
-
-        // Aqui você deve implementar a lógica para obter o edital selecionado
-        // por exemplo, através de um componente de lista ou tabela
-
-        // Suponha que você tenha obtido o edital selecionado em uma variável chamada "editalSelecionado"
-       
-
     }
-     
+    
+	/**
+	 * Configuração para exibir as informações e permitir as
+	 * interações com os dados com a instância da classe Dados.
+	 * @param args
+	 */
 	public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-           
-          
+        SwingUtilities.invokeLater(new Runnable() {//Garante os eventos swings
+        	
 			public void run() {
 				Dados dados = new Dados();
                 new TelaEdital(dados).setVisible(true);
             }
         });
-        
-        
+          
     }
 
-	
-	
-
 }
-
-
