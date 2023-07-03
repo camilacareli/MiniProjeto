@@ -3,25 +3,24 @@ package model;
 
 import java.util.ArrayList;
 
-
+/**
+ * Classe que simula um bamco de dados e faz o gerenciamento deles.
+ * 
+ * @author Pedro
+ * @author Camila
+ * @since 2023
+ * @version 1.1
+ *
+ */
 public class Dados {
 	private ArrayList<Edital> editais = new ArrayList<>();
 	private ArrayList<QuestaoDissertativa> questoesDissertativa = new ArrayList<>();
 	private ArrayList<QuestaoMultiplaEscolha> questoesMultiplaEscolha = new ArrayList<>();
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+	/**
+	 * Contém um objeto Dados
+	 */
 	public Dados() {
-		
-		
-		
 		editais.add(new Edital("Banco do Brasil" , "chegar no horario e levar caneta preta", "100","30/09/2023" ,
 				"30/10/2023"));
 		editais.add(new Edital("Departamento Estadual de Trânsito","chegar no horario e levar caneta preta", "100.00", "05/05/2023",
@@ -106,24 +105,29 @@ public class Dados {
 
 
 
-	
+	/**
+	 * Aqui é retornado uma lista de editais.
+	 * @return
+	 */
 	public static ArrayList<Edital> getTodosEditais() {
 		ArrayList<Edital> todosEditais = new ArrayList<> ();
 		return todosEditais;
-		
-		
 	}
 	
+	/**
+	 * Aqui é retornado uma lista de questões dissertativas.
+	 * @return
+	 */
 	public ArrayList<QuestaoDissertativa> getTodasQuestoesDissertativas(){
 		ArrayList<QuestaoDissertativa> todasQuestoesDissertativas = new ArrayList<QuestaoDissertativa>();
 		todasQuestoesDissertativas.addAll(questoesDissertativa);
 		return todasQuestoesDissertativas;
-		
-		
-		
-		
 	}
 	
+	/**
+	 * Aqui retorna uma lista de questões de multipla escolha.
+	 * @return
+	 */
 	public static ArrayList<QuestaoMultiplaEscolha> getTodasQuestoesMultiplaEscolha(){
 		ArrayList<QuestaoMultiplaEscolha> todasQuestoesMultiplaEscolha = new ArrayList<QuestaoMultiplaEscolha>();
 		return todasQuestoesMultiplaEscolha;
@@ -132,7 +136,12 @@ public class Dados {
 	
 	
 	
-	//Edital
+	/**
+	 * Aqui pesquisa por data para saber se está atual ou não.
+	 * 
+	 * @param dataDigitada
+	 * @return
+	 */
 	public Edital pesquisarPorData(String dataDigitada) {
 		for (Edital edital : editais) {
 			
@@ -140,24 +149,29 @@ public class Dados {
 				return edital;
 			}				
 		}
-			
-		
-	
 		return null;
 	}	
-	 
+	
+	/**
+	 * Cria um edital com seus atributos específicos.
+	 * 
+	 * @param nomeConcurso
+	 * @param regras
+	 * @param taxaInscricao
+	 * @param dataConcurso
+	 * @param dataFechamento
+	 */
 	public  void criarEdital(String nomeConcurso, String regras, String taxaInscricao, String dataConcurso,
 			String dataFechamento){
 			editais.add(new Edital(nomeConcurso, regras, taxaInscricao ,dataConcurso, dataFechamento));	
-	
-		
-		
-		  
 	 }
-
-
-
-
+	
+	/**
+	 * Aqui é a lógica para exluir um edital.
+	 * 
+	 * @param indice
+	 * @return
+	 */
 	public boolean excluirEdital(int indice) {
 	    ArrayList<Edital> editais = getEditais();
 
@@ -171,12 +185,12 @@ public class Dados {
 	    }
 	}
 
-
-
-	
-
-
-
+	/**
+	 * Aqui é lógica para ler um edital
+	 * 
+	 * @param selectedEdital
+	 * @return
+	 */
 	public Edital leituraEdital(String selectedEdital) {
 		for (Edital edital: editais) {
 			if(selectedEdital.contains(edital.getNomeConcurso())) {
@@ -185,7 +199,14 @@ public class Dados {
 		}
 		return null;
 	}
-
+	
+	/**
+	 * Aqui é a lógica para atualizar um edital
+	 * 
+	 * @param indice
+	 * @param editalAtualizado
+	 * @return
+	 */
 	public boolean atualizarEdital(int indice, Edital editalAtualizado) {
 	    ArrayList<Edital> editais = getEditais();
 
@@ -201,7 +222,12 @@ public class Dados {
 	}
 
 
-             //Questao multipla Escolha
+    /**
+     * Aqui é a lógica para excluir uma questão multipla escolha.
+     * 
+     * @param indice
+     * @return
+     */
 	public boolean excluirQuestaoME(int indice) {
 	    ArrayList<QuestaoMultiplaEscolha> questoesMultiplaEscolha = getQuestoesMultiplaEscolha();
 
@@ -213,7 +239,14 @@ public class Dados {
 	        return false; // Índice inválido, não é possível excluir o edital
 	    }
 	}
-
+	
+	/**
+	 * Lógica para atualizar uma questão multipla escolha.
+	 * 
+	 * @param indice
+	 * @param questaoMEAtualizado
+	 * @return
+	 */
 	public boolean atualizarQuestaoME(int indice, QuestaoMultiplaEscolha questaoMEAtualizado) {
 		 ArrayList<QuestaoMultiplaEscolha> questoesMultiplaEscolha = getQuestoesMultiplaEscolha();
 
@@ -228,6 +261,13 @@ public class Dados {
 		    }
 		}
 	
+	
+	/**
+	 * Lógica para ler uma questão multipla escolha.
+	 * 
+	 * @param selectedQuestaoMultiplaEscolha
+	 * @return
+	 */
 	public String lerQuestaoME(String selectedQuestaoMultiplaEscolha) {
 	    for (QuestaoMultiplaEscolha questaoME : questoesMultiplaEscolha) {
 	        if (selectedQuestaoMultiplaEscolha.contains(questaoME.getPerguntaQuestão())) {
@@ -237,14 +277,24 @@ public class Dados {
 	    return null;
 	}
 	
+	/**
+	 * Lógica para cadastrar uma questão multipla escolha.
+	 * 
+	 * @param questaoMateria
+	 * @param perguntaQuestao
+	 * @param escolhaVerdadeira
+	 * @param escolhaFalsa
+	 */
 	public  void cadastrarQuestaoME(String questaoMateria, String perguntaQuestao, String escolhaVerdadeira, String escolhaFalsa){
 			questoesMultiplaEscolha.add(new QuestaoMultiplaEscolha(questaoMateria, perguntaQuestao, escolhaVerdadeira , escolhaFalsa));	
 	  
 	 }
-	
-	
-	
-	
+
+	/**
+	 * Lógica para listagem de uma questão multipla escolha por uma determinada materia.
+	 * 
+	 * @return
+	 */
 	public ArrayList<String> listarMaterias() {
 	    ArrayList<String> materias = new ArrayList<>();
 	    
@@ -259,7 +309,12 @@ public class Dados {
 	    return materias;
 	}
 	
-
+	/**
+	 * Lógica para buscar uma questão multipla escolha de uma determinada matéria.
+	 * 
+	 * @param selectedMateria
+	 * @return
+	 */
 	public ArrayList<QuestaoMultiplaEscolha> buscarMateriaME(String selectedMateria) {
 	    ArrayList<QuestaoMultiplaEscolha> questoesFiltradas = new ArrayList<>();
 	    for (QuestaoMultiplaEscolha questaoME : questoesMultiplaEscolha) {
@@ -272,6 +327,93 @@ public class Dados {
 	
 	
 	}
+
+	public boolean excluirQuestaoD(int indice) {
+	    ArrayList<QuestaoDissertativa> questoesDissertativa = getQuestoesDissertativa();
+	
+	    // Verifica se o índice está dentro dos limites do ArrayList
+	    if (indice >= 0 && indice < questoesDissertativa.size()) {
+	        questoesDissertativa.remove(indice);
+	        return true; // Exclusão bem-sucedida
+	    } else {
+	        return false; // Índice inválido, não é possível excluir o edital
+	    }
+	}
+	
+	public boolean atualizarQuestaoD(int indice, QuestaoDissertativa questaoDAtualizado) {
+		 ArrayList<QuestaoDissertativa> questoesDissertativa = getQuestoesDissertativa();
+	
+		    // Verifica se o índice está dentro dos limites do ArrayList
+		    if (indice >= 0 && indice < questoesDissertativa.size()) {
+		        // Atualiza a questão no índice especificado
+		        questoesDissertativa.set(indice, questaoDAtualizado);
+	
+		        return true; // Atualização bem-sucedida
+		    } else {
+		        return false; // Índice inválido, não é possível atualizar a questão
+		    }
+		}
+	
+	
+	public ArrayList<String> listarMateriasD() {
+	    ArrayList<String> materias = new ArrayList<>();
+	    
+	    // Percorre todas as questões cadastradas
+	    for (QuestaoDissertativa questaoD : questoesDissertativa) {
+	        String materia = questaoD.getQuestaoMateria();
+	        if (!materias.contains(materia)) {
+	            materias.add(materia);
+	        }
+	    }
+	    
+	    return materias;
+	}
+	
+	
+	public ArrayList<QuestaoDissertativa> buscarMateriaD(String selectedMateria) {
+	    ArrayList<QuestaoDissertativa> questoesFiltradas = new ArrayList<>();
+	    for (QuestaoDissertativa questaoD : questoesDissertativa) {
+	        if (selectedMateria.equals(questaoD.getQuestaoMateria())) {
+	            questoesFiltradas.add(questaoD);
+	        }
+	    }
+	    return questoesFiltradas;
+	}
+	
+	
+	
+	public String lerQuestaoD(String selectedQuestaoDissertativa) {
+	    for (QuestaoDissertativa questaoD : questoesDissertativa) {
+	        if (selectedQuestaoDissertativa.contains(questaoD.getPerguntaQuestão())) {
+	            return questaoD.toString();
+	        }
+	    }
+	    return null;
+	}
+	
+	public static ArrayList<QuestaoDissertativa> getTodasQuestoesDissertativas(){
+		ArrayList<QuestaoDissertativa> todasQuestoesDissertativas = new ArrayList<QuestaoDissertativa>();
+		return todasQuestoesDissertativas;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	}
+
+
+
+
+
+
+
+
+
 
 
 

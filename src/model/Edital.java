@@ -1,20 +1,29 @@
 package model;
 
-
-
-
-
+/**
+ * Classe que contém todos os atributos necessarios de um edital.
+ * 
+ * @author Camila
+ * @author Pedro
+ * @since 2023
+ * @version 1.1
+ */
 public class Edital {
 	private String nomeConcurso;
 	private String regrasProva;
 	private String taxaInscricao;
 	private String dataFechamento;
 	private String dataConcurso;
-	
-	
 
-
-	//construtores
+	/**
+	 * Contém um objeto Edital
+	 * 
+	 * @param nomeConcurso
+	 * @param regrasProva
+	 * @param taxaInscricao
+	 * @param dataFechamento
+	 * @param dataConcurso
+	 */
 	public Edital(String nomeConcurso, String regrasProva, String taxaInscricao,
 			String dataFechamento, String dataConcurso) {
 		super();
