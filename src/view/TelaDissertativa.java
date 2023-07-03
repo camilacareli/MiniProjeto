@@ -1,4 +1,4 @@
-[21:37, 02/07/2023] pedro: package view;
+package view;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -26,448 +26,336 @@ public class TelaDissertativa extends JFrame {
     private DefaultListModel<String> redacoesListModel;
     private JButton excluirButton;
     private JButton atualizarButton;
-…
-[21:37, 02/07/2023] pedro: package model;
-
-import java.util.ArrayList;
-
-/**
- * Classe que simula um bamco de dados e faz o gerenciamento deles.
- * 
- * @author Pedro
- * @author Camila
- * @since 2023
- * @version 1.1
- *
- */
-public class Dados {
-	private ArrayList<Edital> editais = new ArrayList<>();
-	private ArrayList<QuestaoDissertativa> questoesDissertativa = new ArrayList<>();
-	private ArrayList<QuestaoMultiplaEscolha> questoesMultiplaEscolha = new ArrayList<>();
-
-	/**
-	 * Contém um objeto Dados
-	 */
-	public Dados() {
-		editais.add(new Edital("Banco do Brasil" , "chegar no horario e levar caneta preta", "100","30/09/2023" ,
-				"30/10/2023"));
-		editais.add(new Edital("Departamento Estadual de Trânsito","chegar no horario e levar caneta preta", "100.00", "05/05/2023",
-				"05/09/2023" ));
-		editais.add(new Edital("Caixa Econômica Federal", "chegar no horario e levar caneta preta", "100.0" , "05/08/2023" ,
-				"09/10/2023"));
-		editais.add(new Edital("Polícia Rodoviária Federal", "nao levar lapiz. borracha, celular", "120.00" , 
-				"30/09/2023" , "30/10/2023" ));
-		editais.add(new Edital("Departamento de Trânsito", "o candidato devara fazer pelo menos 50% da prova", 
-				"150.00" , "05/08/2023", "07/012/2023"));
-		editais.add(new Edital("Receita Federal", "levar caneta preta e lanche em algo transparente",
-				"90.00" , "18/11/2023", "05/01/2024"));
-		
-		editais.add(new Edital("Polícia Federal", "chegar no horario e levar caneta preta", "160.00" , 
-				"07/12/2023", "05/02/2024"));
-		editais.add(new Edital("Câmaras dos Deputados", "chegar 30 minutos antes do horario final", "120.00" ,
-				"22/08/2023", "25/09/2023"));
-		editais.add(new Edital("Tribunal de Contas da União" , "chegar no horario e levar caneta preta", "160.00" , 
-				"22/08/2023", "05/02/2024"));
-		
-	
-		
-	    questoesMultiplaEscolha.add(new QuestaoMultiplaEscolha("PORTUGUÊS", "Qual a primeira letra do alfabeto?",  
-	    		"A primeira letra do Alfabeto é A", "A primeira letra do alfabeto é B"));
-		
-	   
-	    questoesMultiplaEscolha.add(new QuestaoMultiplaEscolha("MATEMÁTICA", "Quanto é 2+2x4?", "O valor é 10", "O valor é 16"));
-	    
-	    questoesMultiplaEscolha.add(new QuestaoMultiplaEscolha("ATUALIDADES", "Qual cantor(a) brasileiro(a) que chegou no top 1 com a musica envolve?", 
-	    		"Anita", "Neymar"));
-	    
-	    questoesMultiplaEscolha.add(new QuestaoMultiplaEscolha("DIREITO CONSTITUCIONAL", "(CONSULPLAN - 2017 - Prefeitura de Sabará/MG - Advogado) - Constitui um dos objetivos da"
-	    		+ " República Federativa do Brasil:" , "Garantia do desenvolvimento nacional" , "Independência nacional"));
-	    
-	    
-	    questoesDissertativa.add(new QuestaoDissertativa("PORTUGUÊS", "A língua pode assumir modalidades variadas em sua forma de apresentação. De acordo com conhecimentos\r\n"
-	    		+ "adquiridos acerca da língua ao longo do ensino médio, estabeleça uma relação entre a língua portuguesa em sua\r\n"
-	    		+ "modalidade escrita formal e as características da variação linguística presente nas mais variadas situações de\r\n"
-	    		+ "comunicação. ", 
-	    		" As diferenças ocorrem entre a modalidade escrita formal e a fala. A escrita não é a simples transcrição da\r\n"
-	  	    			+ "fala. Podemos sintetizar as diferenças que se estabelecem. Como características da fala podemos citar: espontânea,\r\n"
-	    				+ "passageira, grande apoio contextual, face a face, repetições, redundâncias, truncamentos e desvios. Já na escrita,\r\n"
-	    				+ "podemos citar como características: monitorada, duradoura, ausência de apoio contextual, interlocutor distante,\r\n"
-	    				+ "controle de sintaxe, das repetições, da redundância. As variações linguísticas envolvem diversos aspectos históricos,\r\n"
-	    				+ "sociais, culturais, geográficos, dentre outros."));
-	    
-		questoesDissertativa.add(new QuestaoDissertativa("DIREITO CONSTITUCIONAL", "Defina direito fundamental.", 
-				        " O conjunto institucionalizado de direitos e garantias do ser humano que tem por finalidade básica o respeito,\n "
-				        + "a sua dignidade, por meio de sua proteção contra o arbítrio do poder estatal e o estabelecimento de condições mínimas,\n "
-				        + "de vida e desenvolvimento da personalidade humana."));
-		
-		questoesDissertativa.add(new QuestaoDissertativa("MATÉMATICA", "Quatro médicos –– Amélia, Joaquim, Marcela e Paulo –– estão escalados para os próximos quatro plantões em um\r\n"
-				+ "hospital, não necessariamente nessa ordem. O diretor do hospital fez três afirmações; analise-as.\r\n"
-				+ "I. Joaquim e Marcela farão plantões consecutivos.\r\n"
-				+ "II. Joaquim não será o terceiro a realizar o plantão.\r\n"
-				+ "III. O plantão de Amélia será entre os plantões de Joaquim e Marcela.\r\n"
-				+ "Entretanto, constatou-se que todas as afirmações do diretor são falsas. Diante do exposto, qual médico irá fazer o\r\n"
-				+ "segundo e o quarto plantão? Justifique sua resposta." ,
-				"Paulo irá fazer o segundo plantão. Amélia irá fazer o quarto plantão.\r\n"
-				+ "Como as afirmações do diretor são falsas conclui-se que Joaquim e Marcela não farão plantões consecutivos, Joaquim\r\n"
-				+ "será o terceiro plantonista e que o plantão de Amélia não será entre os plantões de Joaquim e Marcela. Se Joaquim é\r\n"
-				+ "o terceiro plantonista e não fará plantão consecutivo com Marcela, então, Marcela será a primeira médica de\r\n"
-				+ "plantão. O plantão de Amélia não será entre os plantões de Joaquim e Marcela; portanto, ela será a quarta médica de\r\n"
-				+ "plantão. Dessa forma, Paulo será o médico que realizará o segundo plantão."));
-		
-		 questoesDissertativa.add(new QuestaoDissertativa("ATUALIDADES", 
-				   "Com base na seguinte afirmação: \"As mudanças climáticas são uma preocupação global\", desenvolva uma redação de até 10 linhas discutindo a importância da ação coletiva \n"
-				   + " na redução das emissões de gases de efeito estufa e na promoção de práticas sustentáveis para enfrentar o desafio das mudanças climáticas. \n",
-				   "As mudanças climáticas são um tema de extrema relevância na sociedade atual. Essas transformações no clima do nosso planeta têm impactos \n"
-				   + "significativos em diversos aspectos da vida humana e do meio ambiente. "
-				   + "É fundamental compreendermos a gravidade dessas mudanças e agirmos de forma proativa para mitigar seus efeitos.\r\n"
-				   + "\n"
-				   + "O aumento das temperaturas, o derretimento das calotas polares, a intensificação de eventos climáticos extremos e a elevação do nível do mar são apenas alguns exemplos dos \n"
-				   + "fenômenos decorrentes das mudanças climáticas. Essas alterações afetam diretamente a biodiversidade, a disponibilidade de recursos naturais, a segurança alimentar e o \n"
-				   + "equilíbrio dos ecossistemas. \n"
-				   +"\n"
-				   + "Em suma, as mudanças climáticas representam um dos maiores desafios da atualidade. Precisamos agir com urgência e determinação para proteger nosso planeta e assegurar um \n"
-				   + "futuro sustentável para as próximas gerações. A conscientização, a educação ambiental e a implementação de políticas e práticas sustentáveis são caminhos fundamentais \n "
-				   + "para enfrentarmos essa crise climática de forma efetiva."));
-	    
-	  
-	}		
-		
-		
-	
-	
-	
-	
-	
-	
-	public ArrayList<Edital> getEditais() {
-		return editais;
-	}
-
-
-	public void setEditais(ArrayList<Edital> editais) {
-		this.editais = editais;
-	}
-
-
-	public ArrayList<QuestaoDissertativa> getQuestoesDissertativa() {
-		return questoesDissertativa;
-	}
-
-	public void setQuestoesDissertativa(ArrayList<QuestaoDissertativa> questoesDissertativa) {
-		this.questoesDissertativa = questoesDissertativa;
-	}
-
-	public ArrayList<QuestaoMultiplaEscolha> getQuestoesMultiplaEscolha() {
-		return questoesMultiplaEscolha;
-	}
-
-
-	public void setQuestoesMultiplaEscolha(ArrayList<QuestaoMultiplaEscolha> questoesMultiplaEscolha) {
-		this.questoesMultiplaEscolha = questoesMultiplaEscolha;
-	}
-
-
-	
-
-
-
-
-	/**
-	 * Aqui é retornado uma lista de editais.
-	 * @return
-	 */
-	public static ArrayList<Edital> getTodosEditais() {
-		ArrayList<Edital> todosEditais = new ArrayList<> ();
-		return todosEditais;
-	}
-	
-	/**
-	 * Aqui é retornado uma lista de questões dissertativas.
-	 * @return
-	 */
-	public static ArrayList<QuestaoDissertativa> getTodasQuestoesDissertativas(){
-		ArrayList<QuestaoDissertativa> todasQuestoesDissertativas = new ArrayList<QuestaoDissertativa>();
-		return todasQuestoesDissertativas;
-	}
-	
-	/**
-	 * Aqui retorna uma lista de questões de multipla escolha.
-	 * @return
-	 */
-	public static ArrayList<QuestaoMultiplaEscolha> getTodasQuestoesMultiplaEscolha(){
-		ArrayList<QuestaoMultiplaEscolha> todasQuestoesMultiplaEscolha = new ArrayList<QuestaoMultiplaEscolha>();
-		return todasQuestoesMultiplaEscolha;
-	}
-
-	
-	
-	
-	/**
-	 * Aqui pesquisa por data para saber se está atual ou não.
-	 * 
-	 * @param dataDigitada
-	 * @return
-	 */
-	public Edital pesquisarPorData(String dataDigitada) {
-		for (Edital edital : editais) {
-			
-			if(dataDigitada.equals(edital.getDataFechamento())) {
-				return edital;
-			}				
-		}
-		return null;
-	}	
-	
-	/**
-	 * Cria um edital com seus atributos específicos.
-	 * 
-	 * @param nomeConcurso
-	 * @param regras
-	 * @param taxaInscricao
-	 * @param dataConcurso
-	 * @param dataFechamento
-	 */
-	public  void criarEdital(String nomeConcurso, String regras, String taxaInscricao, String dataConcurso,
-			String dataFechamento){
-			editais.add(new Edital(nomeConcurso, regras, taxaInscricao ,dataConcurso, dataFechamento));	
-	 }
-	
-	/**
-	 * Aqui é a lógica para exluir um edital.
-	 * 
-	 * @param indice
-	 * @return
-	 */
-	public boolean excluirEdital(int indice) {
-	    ArrayList<Edital> editais = getEditais();
-
-	    // Verifica se o índice está dentro dos limites do ArrayList
-	    if (indice >= 0 && indice < editais.size()) {
-	        editais.remove(indice);
-	        
-	        return true; // Exclusão bem-sucedida
-	    } else {
-	        return false; // Índice inválido, não é possível excluir o edital
-	    }
-	}
-
-	/**
-	 * Aqui é lógica para ler um edital
-	 * 
-	 * @param selectedEdital
-	 * @return
-	 */
-	public Edital leituraEdital(String selectedEdital) {
-		for (Edital edital: editais) {
-			if(selectedEdital.contains(edital.getNomeConcurso())) {
-				return edital;
-			}
-		}
-		return null;
-	}
-	
-	/**
-	 * Aqui é a lógica para atualizar um edital
-	 * 
-	 * @param indice
-	 * @param editalAtualizado
-	 * @return
-	 */
-	public boolean atualizarEdital(int indice, Edital editalAtualizado) {
-	    ArrayList<Edital> editais = getEditais();
-
-	    // Verifica se o índice está dentro dos limites do ArrayList
-	    if (indice >= 0 && indice < editais.size()) {
-	        // Atualiza o edital no índice especificado
-	        editais.set(indice, editalAtualizado);
-
-	        return true; // Atualização bem-sucedida
-	    } else {
-	        return false; // Índice inválido, não é possível atualizar o edital
-	    }
-	}
-
-
+    private JButton buscarMateriaButton;
+    private JButton lerQuestaoButton; 
+    private JComboBox<String> materiaDFiltroComboBox;
+    private JTextField redacaoTextField = new JTextField();
+    
+    @SuppressWarnings("unused")//PESQUISAR SOBRE
+	private Dados d;
+    
     /**
-     * Aqui é a lógica para excluir uma questão multipla escolha.
-     * 
-     * @param indice
-     * @return
+     * Constrói um objeto TelaDissertativa
+     * @param d
      */
-	public boolean excluirQuestaoME(int indice) {
-	    ArrayList<QuestaoMultiplaEscolha> questoesMultiplaEscolha = getQuestoesMultiplaEscolha();
+    public TelaDissertativa(Dados d) {
+    	this.d = d;
+    	
+    	//Configurações básicas
+        setTitle("Planejando Meu Futuro | Dissertativa");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(600, 400);
+        setLayout(new GridLayout(2, 2));
+        
+        
+        /*
+         * PAINEL 1
+         */
+        //Configurações do painel e do título
+        JPanel panel1 = new JPanel();
+        panel1.setBackground(Color.BLUE);
+        JLabel tituloPanel1 = new JLabel("Lista de Questões");
+        tituloPanel1.setHorizontalAlignment(SwingConstants.CENTER);
+        tituloPanel1.setForeground(Color.WHITE); 
+        panel1.setLayout(new BorderLayout());
+        panel1.add(tituloPanel1, BorderLayout.NORTH);
+        
+        //Forma para aparecer a listagem
+        redacoesListModel = new DefaultListModel<>();
+        for (QuestaoDissertativa questaoDissertativa : d.getQuestoesDissertativa()) {
+        	redacoesListModel.addElement( "Questão:" + "  " + questaoDissertativa.getPerguntaQuestão());
+        }
+        redacoesList = new JList<>(redacoesListModel);
+        JScrollPane questoesScrollPane = new JScrollPane(redacoesList);
+        panel1.add(questoesScrollPane, BorderLayout.CENTER);
 
-	    // Verifica se o índice está dentro dos limites do ArrayList
-	    if (indice >= 0 && indice < questoesMultiplaEscolha.size()) {
-	        questoesMultiplaEscolha.remove(indice);
-	        return true; // Exclusão bem-sucedida
-	    } else {
-	        return false; // Índice inválido, não é possível excluir o edital
-	    }
-	}
-	
-	/**
-	 * Lógica para atualizar uma questão multipla escolha.
-	 * 
-	 * @param indice
-	 * @param questaoMEAtualizado
-	 * @return
-	 */
-	public boolean atualizarQuestaoME(int indice, QuestaoMultiplaEscolha questaoMEAtualizado) {
-		 ArrayList<QuestaoMultiplaEscolha> questoesMultiplaEscolha = getQuestoesMultiplaEscolha();
+        //Botões de "Excluir", "Atualizar", "Buscar" e "Ler".
+        JPanel buttonPanel = new JPanel(new FlowLayout());
+        excluirButton = new JButton("Excluir");
+        atualizarButton = new JButton("Atualizar Questão");
+        buscarMateriaButton = new JButton("Buscar por Matéria");
+        lerQuestaoButton = new JButton("Ler Questão"); 
 
-		    // Verifica se o índice está dentro dos limites do ArrayList
-		    if (indice >= 0 && indice < questoesMultiplaEscolha.size()) {
-		        // Atualiza a questão no índice especificado
-		        questoesMultiplaEscolha.set(indice, questaoMEAtualizado);
+        //Filtro dos temas das redações
+        materiaDFiltroComboBox = new JComboBox<>();
+        materiaDFiltroComboBox.addItem("Todas as Matérias");
+        materiaDFiltroComboBox.addItem("PORTUGUÊS");
+        materiaDFiltroComboBox.addItem("MATEMÁTICA");
+        materiaDFiltroComboBox.addItem("DIREITO CONSTITUCIONAL");
+        materiaDFiltroComboBox.addItem("ATUALIDADES");
+        
+        //Adiciona os notões no painel.
+        buttonPanel.add(excluirButton);
+        buttonPanel.add(atualizarButton);
+        buttonPanel.add(buscarMateriaButton);
+        buttonPanel.add(lerQuestaoButton); 
+        buttonPanel.add(materiaDFiltroComboBox);
+        panel1.add(buttonPanel, BorderLayout.SOUTH);
+        add(panel1);
 
-		        return true; // Atualização bem-sucedida
-		    } else {
-		        return false; // Índice inválido, não é possível atualizar a questão
-		    }
-		}
-	
-	
-	/**
-	 * Lógica para ler uma questão multipla escolha.
-	 * 
-	 * @param selectedQuestaoMultiplaEscolha
-	 * @return
-	 */
-	public String lerQuestaoME(String selectedQuestaoMultiplaEscolha) {
-	    for (QuestaoMultiplaEscolha questaoME : questoesMultiplaEscolha) {
-	        if (selectedQuestaoMultiplaEscolha.contains(questaoME.getPerguntaQuestão())) {
-	            return questaoME.toString();
-	        }
-	    }
-	    return null;
-	}
-	
-	/**
-	 * Lógica para cadastrar uma questão multipla escolha.
-	 * 
-	 * @param questaoMateria
-	 * @param perguntaQuestao
-	 * @param escolhaVerdadeira
-	 * @param escolhaFalsa
-	 */
-	public  void cadastrarQuestaoME(String questaoMateria, String perguntaQuestao, String escolhaVerdadeira, String escolhaFalsa){
-			questoesMultiplaEscolha.add(new QuestaoMultiplaEscolha(questaoMateria, perguntaQuestao, escolhaVerdadeira , escolhaFalsa));	
-	  
-	 }
+        /*
+         * PAINEL 3
+         */
+        //Configurações básicas no painel e do título
+        JPanel panel3 = new JPanel();
+        panel3.setBackground(Color.GREEN); 
+        JLabel tituloPanel3 = new JLabel("Cadastro de Questões");
+        tituloPanel3.setHorizontalAlignment(SwingConstants.CENTER); 
+        tituloPanel3.setForeground(Color.WHITE); 
+        panel3.setLayout(new BorderLayout());
+        panel3.add(tituloPanel3, BorderLayout.NORTH);
+        JPanel questaoInputPanel = new JPanel();
+        questaoInputPanel.setLayout(new GridLayout(0, 2));
+        
+        //Campos para escrever a redação
+        JLabel questaoLabel = new JLabel("Questão:");
+        JTextArea questaoTextArea = new JTextArea();
+        JLabel dissertacaoLabel = new JLabel("Disserte sobre:");
+        JLabel materiaLabel = new JLabel("Matéria:");
+        JComboBox<String> materiaDComboBox = new JComboBox<>();
+        materiaDComboBox.addItem("PORTUGUÊS");
+        materiaDComboBox.addItem("MATEMÁTICA");
+        materiaDComboBox.addItem("DIREITO CONSTITUCIONAL");
+        materiaDComboBox.addItem("ATUALIDADES");
+        
+        //Botão de cadastrar
+        JLabel cadastrarLabel = new JLabel();
+        JButton cadastrarButton = new JButton("Cadastrar");
 
-	/**
-	 * Lógica para listagem de uma questão multipla escolha por uma determinada materia.
-	 * 
-	 * @return
-	 */
-	public ArrayList<String> listarMaterias() {
-	    ArrayList<String> materias = new ArrayList<>();
-	    
-	    // Percorre todas as questões cadastradas
-	    for (QuestaoMultiplaEscolha questaoME : questoesMultiplaEscolha) {
-	        String materia = questaoME.getQuestaoMateria();
-	        if (!materias.contains(materia)) {
-	            materias.add(materia);
-	        }
-	    }
-	    
-	    return materias;
-	}
-	
-	/**
-	 * Lógica para buscar uma questão multipla escolha de uma determinada matéria.
-	 * 
-	 * @param selectedMateria
-	 * @return
-	 */
-	public ArrayList<QuestaoMultiplaEscolha> buscarMateriaME(String selectedMateria) {
-	    ArrayList<QuestaoMultiplaEscolha> questoesFiltradas = new ArrayList<>();
-	    for (QuestaoMultiplaEscolha questaoME : questoesMultiplaEscolha) {
-	        if (selectedMateria.equals(questaoME.getQuestaoMateria())) {
-	            questoesFiltradas.add(questaoME);
-	        }
-	    }
-	    return questoesFiltradas;
-	}
-	
-	
-	
+        questaoInputPanel.add(questaoLabel);
+        questaoInputPanel.add(questaoTextArea);
+        questaoInputPanel.add(dissertacaoLabel);
+        questaoInputPanel.add(new JLabel()); 
+        questaoInputPanel.add(new JLabel("Resposta "));
+        questaoInputPanel.add(redacaoTextField);
+        questaoInputPanel.add(materiaLabel);
+        questaoInputPanel.add(materiaDComboBox);
+        questaoInputPanel.add(cadastrarLabel);
+        questaoInputPanel.add(cadastrarButton);
+        panel3.add(questaoInputPanel, BorderLayout.CENTER);
+        add(panel3);
+        
+        //Listeners do botão "Excluir"
+        excluirButton.addActionListener(new ActionListener() {
+        	/**
+             *Aqui tem um sobreescrita, ou seja, implementa um 
+        	 * método da interface para exluir uma questão.
+        	 * @param e
+             */
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	int selectedIndex = redacoesList.getSelectedIndex();
+   	         if (selectedIndex != -1) {
+   	             boolean res = d.excluirQuestaoD(selectedIndex);
+   	             if (res) {
+   	                 JOptionPane.showMessageDialog(null, "Questão removida com sucesso!");
+   	              redacoesList.updateUI();
+   	                 // Atualiza a lista de questoes após a remoção
+                       DefaultListModel<String> questoesModel = (DefaultListModel<String>) redacoesList.getModel();
+   	                 questoesModel.remove(selectedIndex);
+   	              redacoesList.setModel(questoesModel); // Atualiza o modelo da lista
+   	             } else {
+   	                 JOptionPane.showMessageDialog(null, "Erro ao remover a questão!");
+   	             }
+   	         } else {
+   	             JOptionPane.showMessageDialog(null, "Selecione uma questão para remover!");
+   	         }
+   	         
+            }
+        });
+            
+        //Listeners do botão "Arualizar"
+        atualizarButton.addActionListener(new ActionListener() {
+        	/**
+             * Aqui tem um sobreescrita, ou seja, implementa um 
+        	 * método da interface para atualizar a lista.
+        	 * @param e
+             */
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	redacoesList.addListSelectionListener(new ListSelectionListener() {
+            	    public void valueChanged(ListSelectionEvent e) {
+            	        if (!e.getValueIsAdjusting()) {
+            	            // Obtém o índice da questao selecionada
+            	            int selectedIndex = redacoesList.getSelectedIndex();
 
-	public boolean excluirQuestaoD(int indice) {
-	    ArrayList<QuestaoDissertativa> questoesDissertativa = getQuestoesDissertativa();
-	
-	    // Verifica se o índice está dentro dos limites do ArrayList
-	    if (indice >= 0 && indice < questoesDissertativa.size()) {
-	        questoesDissertativa.remove(indice);
-	        return true; // Exclusão bem-sucedida
-	    } else {
-	        return false; // Índice inválido, não é possível excluir o edital
-	    }
-	}
-	
-	public boolean atualizarQuestaoD(int indice, QuestaoDissertativa questaoDAtualizado) {
-		 ArrayList<QuestaoDissertativa> questoesDissertativa = getQuestoesDissertativa();
-	
-		    // Verifica se o índice está dentro dos limites do ArrayList
-		    if (indice >= 0 && indice < questoesDissertativa.size()) {
-		        // Atualiza a questão no índice especificado
-		        questoesDissertativa.set(indice, questaoDAtualizado);
-	
-		        return true; // Atualização bem-sucedida
-		    } else {
-		        return false; // Índice inválido, não é possível atualizar a questão
-		    }
-		}
-	
-	
-	public ArrayList<String> listarMateriasD() {
-	    ArrayList<String> materias = new ArrayList<>();
-	    
-	    // Percorre todas as questões cadastradas
-	    for (QuestaoDissertativa questaoD : questoesDissertativa) {
-	        String materia = questaoD.getQuestaoMateria();
-	        if (!materias.contains(materia)) {
-	            materias.add(materia);
-	        }
-	    }
-	    
-	    return materias;
-	}
-	
-	
-	public ArrayList<QuestaoDissertativa> buscarMateriaD(String selectedMateria) {
-	    ArrayList<QuestaoDissertativa> questoesFiltradas = new ArrayList<>();
-	    for (QuestaoDissertativa questaoD : questoesDissertativa) {
-	        if (selectedMateria.equals(questaoD.getQuestaoMateria())) {
-	            questoesFiltradas.add(questaoD);
-	        }
-	    }
-	    return questoesFiltradas;
-	}
-	
-	
-	
-	public String lerQuestaoD(String selectedQuestaoDissertativa) {
-	    for (QuestaoDissertativa questaoD : questoesDissertativa) {
-	        if (selectedQuestaoDissertativa.contains(questaoD.getPerguntaQuestão())) {
-	            return questaoD.toString();
-	        }
-	    }
-	    return null;
-	}
-	
-	public  void cadastrarQuestaoD(String questaoMateria, String perguntaQuestao, String redacao){
-			questoesDissertativa.add(new QuestaoDissertativa(questaoMateria, perguntaQuestao, redacao));	
-	  
-	 }
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	}
+            	            // Verifica se uma questao foi selecionado
+            	            if (selectedIndex != -1) {
+            	                // Obtém a questao selecionada a partir do objeto Dados
+            	                QuestaoDissertativa questaoDSelecionado = d.getQuestoesDissertativa().get(selectedIndex);
+            	                
+            	                // Preenche os campos de texto com os dados da questao
+            	                questaoTextArea.setText(questaoDSelecionado.getPerguntaQuestão());
+            	                redacaoTextField.setText(questaoDSelecionado.getRedacao());
+            	                materiaDComboBox.setSelectedItem(questaoDSelecionado.getQuestaoMateria());
+            	               
+            	                
+            	            }
+            	        }
+            	    }
+            	});	 
+        
+           }
+        });
+
+        //Listeners do botão buscar por matéria
+        buscarMateriaButton.addActionListener(new ActionListener() {
+        	/**
+        	 * Aqui tem um sobreescrita, ou seja, implementa um 
+        	 * método da interface para que o botão buscar 
+        	 * matéria, busque corretamente.
+        	 * @param e
+        	 */
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	ArrayList<String> materias = d.listarMateriasD();
+
+                // Preenche o JComboBox com as matérias
+                for (String materia : materias) {
+               	 materiaDFiltroComboBox.addItem(materia);
+                }
+
+                // Percorre todas as questões cadastradas
+                for (int i = 0; i < redacoesListModel.size(); i++) {
+                    String questao = redacoesListModel.getElementAt(i);
+                    String materia = getMateriaFromQuestao(questao);
+                    if (!materias.contains(materia)) {
+                        materias.add(materia);
+                    }
+                }
+                
+                if (materias.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Nenhuma matéria encontrada.");
+                } else {
+                    // Exibe a lista de matérias em um JOptionPane
+                    Object[] materiasArray = materias.toArray();
+                    String selectedMateria = (String) JOptionPane.showInputDialog(null, "Selecione uma matéria:",
+                            "Buscar por Matéria", JOptionPane.PLAIN_MESSAGE, null, materiasArray, materiasArray[0]);
+
+                    redacoesList.updateUI();
+                    if (selectedMateria != null) {
+                        DefaultListModel<String> filteredModel = new DefaultListModel<>();
+                        ArrayList<QuestaoDissertativa> questoesFiltradas = d.buscarMateriaD(selectedMateria);
+                        for (QuestaoDissertativa questaoD : questoesFiltradas) {
+                        	filteredModel.addElement(questaoD.toString());
+                        
+                        }
+                        
+                        // Filtra as questões com base na matéria selecionada
+                        for (int i = 0; i < redacoesListModel.size(); i++) {
+                            String questao = redacoesListModel.getElementAt(i);
+                            String materia = getMateriaFromQuestao(questao);
+                            if (selectedMateria.equals(materia)) {
+                                filteredModel.addElement(questao);
+                            }
+                        }
+
+                        // Atualiza o modelo da lista de questões com as questões filtradas
+                        redacoesList.setModel(filteredModel);
+                    }
+                }
+            }
+
+            /**
+             * Método de auxílio para extrair a matéria de uma questão
+             * @param questao
+             * @return
+             */
+            private String getMateriaFromQuestao(String questao) {
+                String[] lines = questao.split("\n");
+                for (String line : lines) {
+                    if (line.startsWith("Matéria:")) {
+                        return line.substring(line.indexOf(":") + 1).trim();
+                    }
+                }
+                return "";
+            }
+        });
+
+        //Listeners do botão "Ler"
+        lerQuestaoButton.addActionListener(new ActionListener() {
+        	/**
+        	 * Aqui tem um sobreescrita, ou seja, implementa um 
+        	 * método da interface para ler questões.
+        	 * @param e
+        	 */
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	 int selectedIndex = redacoesList.getSelectedIndex();
+                 if (selectedIndex != -1) {
+                     String selectedQuestion = (String) redacoesList.getModel().getElementAt(selectedIndex);
+
+                     String questaoString = d.lerQuestaoD(selectedQuestion).toString();
+                     redacoesList.updateUI();
+
+                     if (questaoString != null) {
+                         JOptionPane.showMessageDialog(null, questaoString, "Questão", JOptionPane.PLAIN_MESSAGE);
+                     } else {
+                         JOptionPane.showMessageDialog(null, "Questão não encontrada.", "Erro", JOptionPane.ERROR_MESSAGE);
+                     }
+                 }
+             }
+         });
+        
+
+
+
+
+
+        //certo/ conectado com a dados 
+        cadastrarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String questao = questaoTextArea.getText();
+                String redacao = redacaoTextField.getText();
+                
+                
+                String materia = (String) materiaDComboBox.getSelectedItem(); 
+                
+                
+                d.cadastrarQuestaoD(materia, questao, redacao);
+
+                String novaQuestao = "Questão: " + questao + "    ";
+                        
+                        
+                       
+                       
+                        
+
+                redacoesListModel.addElement(novaQuestao);
+                JOptionPane.showMessageDialog(null, "Questão cadastrada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+
+                // Limpar os campos de entrada após cadastrar a questão
+                questaoTextArea.setText("");
+                redacaoTextField.setText("");
+                
+                
+            }
+        });
+
+    }
+    
+    public  ArrayList<String[]> getQuestaoDissertativa() {
+        ArrayList<String[]> QuestoesDissertativa = new ArrayList<>();
+        ArrayList<QuestaoDissertativa> D = Dados.getTodasQuestoesDissertativas();
+        
+        for (int i=0; i<D.size();i++) {
+        
+        }
+       
+        return QuestoesDissertativa;
+    }
+    
+    
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+            	Dados dados = new Dados();
+            	new TelaDissertativa(dados).setVisible(true);
+            }
+               
+            
+        });
+    }
+}

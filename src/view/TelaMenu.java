@@ -105,7 +105,8 @@ public class TelaMenu extends JFrame {
             TelaMultiplaEscolha telaMultiplaEscolha = new TelaMultiplaEscolha(dados);
             telaMultiplaEscolha.setVisible(true);
         } else if (filtro.equals("QUESTÕES DISSERTATIVAS")) {
-            TelaDissertativa telaDissertativa = new TelaDissertativa();
+        	Dados dados = new Dados();
+            TelaDissertativa telaDissertativa = new TelaDissertativa(dados);
             telaDissertativa.setVisible(true);
         }
     }
